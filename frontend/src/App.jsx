@@ -1,14 +1,36 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import Auth from './Auth'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // Optional: check if token already exists on load
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+  }
+
+  if (!isLoggedIn) {
+    return <Auth onLoginSuccess={() => setIsLoggedIn(true)} />
+  }
 
   return (
     <>
+      <div style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
+        <button onClick={handleLogout} style={{ background: '#333', color: 'white', padding: '0.5rem 1rem', borderRadius: '8px' }}>Log Out</button>
+      </div>
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
