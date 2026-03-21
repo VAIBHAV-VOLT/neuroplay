@@ -56,7 +56,7 @@ router.post('/login', (req, res) => {
         return res.status(400).send('Invalid credentials');
       }
 
-      const token = jwt.sign({ id: user.id }, 'secretkey');
+      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
 
       res.json({ token });
     }
