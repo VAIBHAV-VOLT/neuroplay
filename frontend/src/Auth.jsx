@@ -66,50 +66,105 @@ export default function Auth() {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <button className="auth-back-btn" onClick={() => navigate('/')}>← Back to Home</button>
+    <div className="auth-page">
+      <div className="auth-background-blobs">
+         <div className="blob blob-1"></div>
+         <div className="blob blob-2"></div>
+      </div>
 
-        <div className="auth-header">
-          <h1>{isLogin ? 'Welcome Back' : 'Join NeuroPlay'}</h1>
-          <p>{isLogin ? 'Enter your details to access your account' : 'Start your journey with us today'}</p>
-        </div>
+      <div className="auth-card glass-card">
+        <button className="auth-back-btn" onClick={() => navigate('/')}>
+          ← Back to the Sanctuary
+        </button>
 
-        {message && (
-          <div className={`auth-message ${isError ? 'error' : 'success'}`}>
-            {message}
-          </div>
-        )}
+        <div className="auth-content">
+          <header className="auth-header">
+            <h1>{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
+            <p className="auth-subtitle">
+              {isLogin 
+                ? 'Continue your journey in the sanctuary.' 
+                : 'Start your journey with NeuroPlay'}
+            </p>
+          </header>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          {!isLogin && (
-            <div className="input-group">
-              <label>Name</label>
-              <input type="text" name="name" placeholder="John Doe"
-                value={formData.name} onChange={handleChange} required />
+          {message && (
+            <div className={`auth-alert ${isError ? 'error' : 'success'}`}>
+              {message}
             </div>
           )}
-          <div className="input-group">
-            <label>Email Address</label>
-            <input type="email" name="email" placeholder="you@example.com"
-              value={formData.email} onChange={handleChange} required />
-          </div>
-          <div className="input-group">
-            <label>Password</label>
-            <input type="password" name="password" placeholder="••••••••"
-              value={formData.password} onChange={handleChange} required />
-          </div>
-          <button type="submit" className="auth-button" disabled={isLoading}>
-            {isLoading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
-          </button>
-        </form>
 
-        <div className="auth-toggle">
-          {isLogin ? "Don't have an account?" : "Already have an account?"}
-          <button type="button" onClick={toggleMode}>
-            {isLogin ? 'Sign up' : 'Log in'}
-          </button>
+          <form className="auth-form" onSubmit={handleSubmit}>
+            {!isLogin && (
+              <div className="auth-input-group">
+                <label>Name</label>
+                <input 
+                  type="text" 
+                  name="name" 
+                  placeholder="Your Name"
+                  value={formData.name} 
+                  onChange={handleChange} 
+                  required 
+                />
+              </div>
+            )}
+            <div className="auth-input-group">
+              <label>Email Address</label>
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="you@example.com"
+                value={formData.email} 
+                onChange={handleChange} 
+                required 
+              />
+            </div>
+            <div className="auth-input-group">
+              <label>Password</label>
+              <div className="password-wrapper">
+                <input 
+                  type="password" 
+                  name="password" 
+                  placeholder="••••••••"
+                  value={formData.password} 
+                  onChange={handleChange} 
+                  required 
+                />
+                {isLogin && (
+                  <button type="button" className="forgot-link">Forgot?</button>
+                )}
+              </div>
+            </div>
+
+            <button type="submit" className="auth-submit-btn" disabled={isLoading}>
+              {isLoading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
+            </button>
+          </form>
+
+          <div className="auth-footer-toggle">
+            <p>
+              {isLogin ? "Don't have an account?" : "Already have an account?"}
+              <button type="button" onClick={toggleMode}>
+                {isLogin ? 'Sign up' : 'Login'}
+              </button>
+            </p>
+            {!isLogin && <p className="social-proof">Join 2,000+ others finding their sanctuary.</p>}
+          </div>
+
+          {isLogin && (
+            <blockquote className="auth-quote">
+              "Growth is a gradual process; welcome each step with kindness."
+            </blockquote>
+          )}
         </div>
+
+        <footer className="auth-legal">
+           <div className="legal-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms</a>
+              <a href="#">Support</a>
+           </div>
+           <p>© 2024 Fluid Sanctuary. Your companion in growth.</p>
+        </footer>
       </div>
     </div>
   );
