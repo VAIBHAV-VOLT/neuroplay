@@ -41,7 +41,16 @@ export default function LandingPage() {
           <a href="#">Community</a>
         </div>
         <div className="lp-nav-actions">
-          <button className="lp-btn-ghost" onClick={() => navigate('/auth', { state: { defaultMode: 'login' } })}>Log In</button>
+          <button 
+            className="group relative inline-flex h-[42px] items-center justify-center overflow-hidden rounded-full bg-white px-8 font-bold text-[#0058b9] shadow-[0_4px_14px_0_rgb(0,88,185,0.1)] transition-all hover:shadow-[0_6px_20px_rgba(0,88,185,0.15)] active:scale-95"
+            onClick={() => navigate('/auth', { state: { defaultMode: 'login' } })}
+          >
+            <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
+              <div className="relative h-full w-10 bg-[#0058b9]/10" />
+            </div>
+            <span className="relative z-10 tracking-tight">Log In</span>
+          </button>
+          
           <button className="lp-btn-primary" onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}>Get Started</button>
         </div>
       </nav>
@@ -59,11 +68,26 @@ export default function LandingPage() {
             games to measure and improve your cognitive resilience daily.
           </p>
           <div className="lp-hero-actions lp-hero-anim" style={{ animationDelay: '0.55s' }}>
-            <button className="lp-btn-primary large lp-btn-shimmer" onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}>
-              Begin Your Journey
+            {/* Begin Your Journey Button */}
+            <button 
+              className="group relative inline-flex h-12 md:h-14 items-center justify-center overflow-hidden rounded-full bg-[#0058b9] px-8 md:px-10 font-bold text-white shadow-[0_8px_24px_0_rgb(0,88,185,0.2)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,88,185,0.3)] active:scale-95 text-[1.1rem]"
+              onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}
+            >
+              <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
+                <div className="relative h-full w-12 bg-white/20" />
+              </div>
+              <span className="relative z-10 tracking-tight">Begin Your Journey</span>
             </button>
-            <button className="lp-btn-ghost large" onClick={() => navigate('/auth', { state: { defaultMode: 'login' } })}>
-              See How It Works
+
+            {/* See How It Works Button */}
+            <button 
+              className="group relative inline-flex h-12 md:h-14 items-center justify-center overflow-hidden rounded-full border-[1.5px] border-[#0058b9]/20 bg-transparent px-8 md:px-10 font-bold text-[#0058b9] transition-all hover:-translate-y-1 hover:bg-[#0058b9]/5 hover:border-[#0058b9]/40 active:scale-95 text-[1.1rem]"
+              onClick={() => navigate('/auth', { state: { defaultMode: 'login' } })}
+            >
+              <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
+                <div className="relative h-full w-12 bg-[#0058b9]/10" />
+              </div>
+              <span className="relative z-10 tracking-tight">See How It Works</span>
             </button>
           </div>
           <div className="lp-hero-stats lp-hero-anim" style={{ animationDelay: '0.7s' }}>
