@@ -74,7 +74,7 @@ export default function LandingPage() {
             <div className="lp-stat"><span className="lp-stat-num">+12%</span><span className="lp-stat-label">Avg. Focus Gain</span></div>
           </div>
         </div>
-        <div className="lp-hero-visual">
+        {/* <div className="lp-hero-visual">
           <div className="lp-neural-ring-wrapper lp-ring-entrance">
             <div className="lp-neural-ring">
               <div className="lp-ring-inner">
@@ -83,7 +83,7 @@ export default function LandingPage() {
             </div>
             <span className="lp-ring-label">Neural Map</span>
           </div>
-        </div>
+        </div> */}
       </section>
 
       {/* How It Works */}
