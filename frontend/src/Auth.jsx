@@ -75,106 +75,104 @@ export default function Auth() {
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-background-blobs">
-         <div className="blob blob-1"></div>
-         <div className="blob blob-2"></div>
+    <div className="min-h-screen w-full bg-surface-container-low flex flex-col items-center justify-between relative overflow-hidden font-body pt-8">
+      {/* Background Gradients */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary-container/20 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-container/10 blur-[120px] rounded-full"></div>
       </div>
 
-      <div className="auth-card glass-card">
-        <button className="auth-back-btn" onClick={() => navigate('/')}>
-          ← Back to the Sanctuary
-        </button>
+      {/* Top Logo */}
+      <div className="z-10 mt-6 cursor-pointer flex items-center gap-2 transition-transform hover:scale-105" onClick={() => navigate('/')}>
+        <span className="material-symbols-outlined text-primary text-3xl">magic_button</span>
+        <span className="text-2xl font-headline font-bold text-primary tracking-tight">
+          Fluid Sanctuary
+        </span>
+      </div>
 
-        <div className="auth-content">
-          <header className="auth-header">
-            <h1>{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
-            <p className="auth-subtitle">
-              {isLogin 
-                ? 'Continue your journey in the sanctuary.' 
-                : 'Start your journey with NeuroPlay'}
-            </p>
-          </header>
-
+      {/* Center Card */}
+      <div className="z-10 w-full max-w-[460px] px-6 mt-16 mb-auto animate-fade-in-up">
+        <div className="bg-surface-container-lowest px-10 py-12 rounded-[2.5rem] shadow-[0_24px_48px_rgba(0,88,185,0.03)] border border-surface-variant/30 flex flex-col items-center">
+          
+          <h1 className="text-3xl font-headline font-bold text-on-surface mb-2">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
+          <p className="text-on-surface-variant text-[0.95rem] mb-8 text-center">{isLogin ? 'Continue your journey in the sanctuary.' : 'Start your journey with NeuroPlay'}</p>
+          
           {message && (
-            <div className={`auth-alert ${isError ? 'error' : 'success'}`}>
+            <div className={`w-full p-4 rounded-2xl mb-6 text-sm font-bold text-center ${isError ? 'bg-error-container/30 text-error' : 'bg-tertiary-container/30 text-tertiary'}`}>
               {message}
             </div>
           )}
 
-          <form className="auth-form" onSubmit={handleSubmit}>
+          <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
             {!isLogin && (
-              <div className="auth-input-group">
-                <label>Name</label>
-                <input 
-                  type="text" 
-                  name="name" 
-                  placeholder="Your Name"
-                  value={formData.name} 
-                  onChange={handleChange} 
-                  required 
-                />
-              </div>
-            )}
-            <div className="auth-input-group">
-              <label>Email Address</label>
               <input 
-                type="email" 
-                name="email" 
-                placeholder="you@example.com"
-                value={formData.email} 
+                type="text" 
+                name="name" 
+                placeholder="Full Name"
+                className="w-full px-5 py-4 rounded-3xl bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/70 focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/30 transition-all font-medium border border-transparent focus:border-primary/30"
+                value={formData.name} 
                 onChange={handleChange} 
                 required 
               />
-            </div>
-            <div className="auth-input-group">
-              <label>Password</label>
-              <div className="password-wrapper">
-                <input 
-                  type="password" 
-                  name="password" 
-                  placeholder="••••••••"
-                  value={formData.password} 
-                  onChange={handleChange} 
-                  required 
-                />
-                {isLogin && (
-                  <button type="button" className="forgot-link">Forgot?</button>
-                )}
-              </div>
-            </div>
+            )}
+            
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Email"
+              className="w-full px-5 py-4 rounded-3xl bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/70 focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/30 transition-all font-medium border border-transparent focus:border-primary/30"
+              value={formData.email} 
+              onChange={handleChange} 
+              required 
+            />
 
-            <button type="submit" className="auth-submit-btn" disabled={isLoading}>
-              {isLoading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Password"
+              className="w-full px-5 py-4 rounded-3xl bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/70 focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/30 transition-all font-medium border border-transparent focus:border-primary/30"
+              value={formData.password} 
+              onChange={handleChange} 
+              required 
+            />
+
+            <button type="submit" disabled={isLoading} className="mt-2 w-full py-4 rounded-full bg-gradient-to-r from-primary to-primary-container text-white font-bold text-[1.05rem] hover:shadow-[0_12px_24px_rgba(0,88,185,0.2)] hover:scale-[0.98] active:scale-95 transition-all disabled:opacity-70 disabled:hover:scale-100">
+              {isLoading ? 'Processing...' : (isLogin ? 'Login' : 'Create Account')}
             </button>
           </form>
 
-          <div className="auth-footer-toggle">
-            <p>
-              {isLogin ? "Don't have an account?" : "Already have an account?"}
-              <button type="button" onClick={toggleMode}>
-                {isLogin ? 'Sign up' : 'Login'}
-              </button>
-            </p>
-            {!isLogin && <p className="social-proof">Join 2,000+ others finding their sanctuary.</p>}
-          </div>
+          <div className="w-full h-px bg-surface-variant/50 my-10"></div>
 
-          {isLogin && (
-            <blockquote className="auth-quote">
-              "Growth is a gradual process; welcome each step with kindness."
-            </blockquote>
-          )}
+          <p className="text-on-surface-variant text-[0.95rem]">
+            {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+            <button type="button" onClick={toggleMode} className="text-primary font-bold hover:underline transition-colors ml-1">
+              {isLogin ? 'Create one' : 'Login'}
+            </button>
+          </p>
         </div>
 
-        <footer className="auth-legal">
-           <div className="legal-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms</a>
-              <a href="#">Support</a>
-           </div>
-           <p>© 2024 Fluid Sanctuary. Your companion in growth.</p>
-        </footer>
+        {/* Social Proof Below Card */}
+        {!isLogin && (
+          <div className="mt-8 flex items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <div className="flex -space-x-3">
+              <img src="https://i.pravatar.cc/100?img=1" alt="user" className="w-10 h-10 rounded-full border-[3px] border-surface-container-low object-cover shadow-sm"/>
+              <img src="https://i.pravatar.cc/100?img=12" alt="user" className="w-10 h-10 rounded-full border-[3px] border-surface-container-low object-cover shadow-sm"/>
+              <img src="https://i.pravatar.cc/100?img=5" alt="user" className="w-10 h-10 rounded-full border-[3px] border-surface-container-low object-cover shadow-sm"/>
+            </div>
+            <p className="text-[0.85rem] text-on-surface-variant font-medium leading-tight max-w-[160px]">Join 2,000+ others finding their sanctuary.</p>
+          </div>
+        )}
       </div>
+
+      {/* Footer */}
+      <footer className="w-full flex flex-col md:flex-row justify-between items-center px-8 md:px-12 py-8 z-10 gap-4">
+         <p className="text-[0.8rem] text-on-surface-variant/80 font-medium">© 2024 Fluid Sanctuary. Your companion in growth.</p>
+         <div className="flex gap-6 text-[0.8rem] text-on-surface-variant/80 font-medium">
+            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-primary transition-colors">Contact Support</a>
+         </div>
+      </footer>
     </div>
   );
 }
