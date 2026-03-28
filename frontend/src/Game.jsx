@@ -104,21 +104,38 @@ export default function Game() {
               <h2 className="text-5xl font-headline font-extrabold mb-4 tracking-tight text-on-surface">Session Complete</h2>
               <p className="text-on-surface-variant text-lg mb-10">Data successfully recorded to your profile.</p>
               
-              <div className="grid grid-cols-2 gap-6 w-full max-w-md mb-12">
-                <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-2xl mb-12">
+                <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm col-span-2 md:col-span-1">
                   <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Total Score</span>
                   <span className="text-4xl font-black text-primary font-headline">{sessionData.focus_score || 0}</span>
                 </div>
-                {sessionData.typing_speed ? (
-                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
-                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">WPM</span>
-                    <span className="text-4xl font-black text-secondary font-headline">{sessionData.typing_speed}</span>
-                  </div>
-                ) : sessionData.reaction_time ? (
+                
+                {sessionData.reaction_time !== undefined && (
                   <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
                     <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Reaction</span>
                     <span className="text-4xl font-black text-tertiary font-headline">{sessionData.reaction_time}ms</span>
                   </div>
+                )}
+
+                {sessionData.typing_speed !== undefined ? (
+                  <>
+                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">WPM</span>
+                    <span className="text-4xl font-black text-secondary font-headline">{sessionData.typing_speed}</span>
+                  </div>
+                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Errors</span>
+                    <span className="text-4xl font-black text-error font-headline">{sessionData.error_rate || 0}%</span>
+                  </div>
+                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Backspaces</span>
+                    <span className="text-4xl font-black text-error-container font-headline text-on-error-container">{sessionData.backspace_count || 0}</span>
+                  </div>
+                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Avg Pause</span>
+                    <span className="text-4xl font-black text-tertiary font-headline">{sessionData.pause_time || 0}s</span>
+                  </div>
+                  </>
                 ) : (
                   <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
                     <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Errors</span>

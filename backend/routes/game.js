@@ -4,7 +4,10 @@ const db = require('../db');
 const authenticate = require('../middleware/authMiddleware');
 
 router.post('/submit-data', authenticate, (req, res) => {
-  const { game_type, score, typing_speed, error_rate, reaction_time, focus_score } = req.body;
+  const { 
+    game_type, score, typing_speed, error_rate, 
+    reaction_time, focus_score, backspace_count, pause_time 
+  } = req.body;
 
   // Step 1: Insert into game_sessions
   db.query(
@@ -18,9 +21,9 @@ router.post('/submit-data', authenticate, (req, res) => {
       // Step 2: Insert into metrics
       db.query(
         `INSERT INTO metrics 
-        (session_id, typing_speed, error_rate, reaction_time, focus_score) 
-        VALUES (?, ?, ?, ?, ?)`,
-        [sessionId, typing_speed, error_rate, reaction_time, focus_score],
+        (session_id, typing_speed, error_rate, reaction_time, focus_score, backspace_count, pause_time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [sessionId, typing_speed, error_rate, reaction_time, focus_score, backspace_count || 0, pause_time || 0],
         (err2, result2) => {
           if (err2) return res.status(500).send(err2);
 

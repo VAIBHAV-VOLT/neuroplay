@@ -32,6 +32,21 @@ export default function MoodCanvas({ onComplete }) {
   const [selections, setSelections] = useState([]);
   const [stepStartTime, setStepStartTime] = useState(Date.now());
   const [timeTaken, setTimeTaken] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(30);
+
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
+      return () => clearInterval(timer);
+    } else if (timeLeft === 0) {
+      const avgTime = timeTaken / Math.max(step, 1);
+      onComplete({
+        focus_score: avgTime < 2500 ? 95 : 70, 
+        reaction_time: Math.round(avgTime),
+        error_rate: 0 
+      });
+    }
+  }, [timeLeft, step, timeTaken]);
 
   const handleSelect = (optionId) => {
     const elapsed = Date.now() - stepStartTime;
@@ -57,7 +72,11 @@ export default function MoodCanvas({ onComplete }) {
   const current = STEPS[step];
 
   return (
-    <div className="flex flex-col items-center justify-center p-8 w-full max-w-lg mx-auto h-full animate-fade-in-up">
+    <div className="flex flex-col items-center justify-center p-8 w-full max-w-lg mx-auto h-full animate-fade-in-up relative pt-20">
+      <div className="absolute top-4 left-4 z-10 bg-surface-container-low px-4 py-2 rounded-full font-bold text-on-surface-variant shadow-sm border border-surface-container">
+        00:{timeLeft.toString().padStart(2, '0')}
+      </div>
+      
       <div className="flex gap-3 mb-12">
         {STEPS.map((_, i) => (
           <div key={i} className={`h-2 rounded-full transition-all duration-500 ${i <= step ? 'w-10 bg-primary' : 'w-4 bg-surface-container-high'}`} />

@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const COLORS = [
-  { type: 'single', bg: 'bg-primary-container', iconColor: 'text-primary', icon: 'radio_button_unchecked', health: 1 },
-  { type: 'double', bg: 'bg-secondary-container', iconColor: 'text-secondary', icon: 'lens', health: 2 },
+  { type: 'single', bg: 'bg-primary-container', iconColor: 'text-primary', icon: 'circle', health: 1 },
+  { type: 'double', bg: 'bg-secondary-container', iconColor: 'text-secondary', icon: 'change_history', health: 2 },
   { type: 'triple', bg: 'bg-error-container', iconColor: 'text-error', icon: 'star', health: 3 }
 ];
 
 export default function BalloonBurst({ onComplete }) {
   const [balloons, setBalloons] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(15);
+  const [timeLeft, setTimeLeft] = useState(30);
   const [score, setScore] = useState(0);
   const [missed, setMissed] = useState(0);
   
@@ -64,6 +64,21 @@ export default function BalloonBurst({ onComplete }) {
         {score} pts
       </div>
       
+      {/* Legend */}
+      <div className="absolute bottom-6 left-6 z-10 flex flex-col gap-3 bg-surface/90 backdrop-blur-md p-4 rounded-3xl border border-surface-variant shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+        <h3 className="text-xs font-bold text-on-surface-variant uppercase tracking-widest pl-1">Targets</h3>
+        <div className="flex flex-col gap-2">
+          {COLORS.map(c => (
+            <div key={c.type} className="flex items-center gap-3 text-sm">
+              <div className={`w-8 h-8 rounded-full ${c.bg} flex items-center justify-center shadow-inner`}>
+                  <span className={`material-symbols-outlined text-[18px] ${c.iconColor}`}>{c.icon}</span>
+              </div>
+              <span className="text-on-surface font-bold">{c.health} {c.health === 1 ? 'Tap' : 'Taps'}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      
       {balloons.map(b => (
         <button
           key={b.id}
@@ -75,8 +90,7 @@ export default function BalloonBurst({ onComplete }) {
           }}
         >
           <div className="absolute inset-0 flex flex-col items-center justify-center opacity-70">
-            <span className={`material-symbols-outlined text-3xl ${b.iconColor}`}>{b.icon}</span>
-            <span className={`font-black text-lg ${b.iconColor}`}>{b.health}</span>
+            <span className={`material-symbols-outlined text-4xl ${b.iconColor}`}>{b.icon}</span>
           </div>
           <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-3 rounded-full ${b.bg} shadow-sm`} />
         </button>
