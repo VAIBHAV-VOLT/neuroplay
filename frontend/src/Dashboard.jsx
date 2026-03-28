@@ -39,10 +39,10 @@ export default function Dashboard() {
 
       <main className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen">
         {/* Main Content Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-10">
           
           {/* Left: Hero Card */}
-          <section className="lg:col-span-5 flex flex-col gap-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          <section className="lg:col-span-4 flex flex-col gap-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
             <div className="bg-surface-container-low p-10 rounded-xl relative overflow-hidden group min-h-[400px] flex flex-col justify-center">
               <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary-container/20 rounded-full blur-3xl animate-pulse-slow"></div>
               <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-secondary/10 rounded-full blur-2xl animate-float"></div>
@@ -60,7 +60,7 @@ export default function Dashboard() {
           </section>
 
           {/* Right: Game Grid (Daily Exercises) */}
-          <section className="lg:col-span-7">
+          <section className="lg:col-span-8">
             <div className="flex items-center justify-between mb-8 px-2 opacity-0 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
               <h2 className="text-2xl font-headline font-bold text-on-surface">Daily Exercises</h2>
               <button className="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
@@ -101,6 +101,7 @@ export default function Dashboard() {
                 <div>
                   <span className="text-[10px] font-bold text-secondary uppercase tracking-widest block mb-2 font-label">Memory</span>
                   <h3 className="text-2xl font-bold font-headline mb-2 text-on-surface">Pattern Recall</h3>
+                  <p className="text-sm text-on-surface-variant line-clamp-2">Memorize grid sequences to test working memory and recall speed.</p>
                 </div>
               </div>
               

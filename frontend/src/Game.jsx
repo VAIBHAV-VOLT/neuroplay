@@ -79,8 +79,8 @@ export default function Game() {
         <div className="w-[100px] hidden sm:block"></div> {/* Spacer for centering */}
       </nav>
 
-      <main className="flex-1 flex items-center justify-center p-6 pt-24 max-w-4xl mx-auto w-full">
-        <div className="w-full glass-card bg-surface-container-lowest/80 backdrop-blur-2xl border border-white/50 shadow-[0_40_80px_rgba(0,88,185,0.08)] rounded-[2.5rem] p-8 md:p-12 min-h-[500px] flex flex-col relative overflow-hidden">
+      <main className="flex-1 flex items-start md:items-center justify-center p-4 sm:p-6 pt-20 md:pt-24 max-w-5xl mx-auto w-full min-h-[calc(100vh-4rem)]">
+        <div className="w-full bg-surface-container-lowest/90 backdrop-blur-2xl border border-surface-container shadow-[0_24px_48px_rgba(0,88,185,0.06)] rounded-[2rem] p-6 sm:p-8 md:p-12 min-h-[500px] flex flex-col relative overflow-hidden">
           
           <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary-container/30 rounded-full blur-3xl animate-pulse-slow pointer-events-none fade-in-up"></div>
           <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-tertiary-container/20 rounded-full blur-3xl animate-float pointer-events-none fade-in-up"></div>

@@ -75,7 +75,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-surface-container-low flex flex-col items-center justify-between relative overflow-hidden font-body pt-8">
+    <div className="min-h-screen w-full bg-surface-container-low flex flex-col items-center justify-between relative overflow-y-auto font-body pt-6">
       {/* Background Gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary-container/20 blur-[120px] rounded-full"></div>
@@ -91,8 +91,8 @@ export default function Auth() {
       </div>
 
       {/* Center Card */}
-      <div className="z-10 w-full max-w-[460px] px-6 mt-16 mb-auto animate-fade-in-up">
-        <div className="bg-surface-container-lowest px-10 py-12 rounded-[2.5rem] shadow-[0_24px_48px_rgba(0,88,185,0.03)] border border-surface-variant/30 flex flex-col items-center">
+      <div className="z-10 w-full max-w-[480px] px-4 sm:px-6 mt-8 sm:mt-12 mb-auto animate-fade-in-up">
+        <div className="bg-surface-container-lowest px-6 sm:px-10 py-10 rounded-[2rem] shadow-[0_24px_48px_rgba(0,88,185,0.05)] border border-surface-variant/30 flex flex-col items-center">
           
           <h1 className="text-3xl font-headline font-bold text-on-surface mb-2">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
           <p className="text-on-surface-variant text-[0.95rem] mb-8 text-center">{isLogin ? 'Continue your journey in the sanctuary.' : 'Start your journey with NeuroPlay'}</p>
