@@ -59,7 +59,7 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      <main className="pt-4 pb-12 px-2 max-w-7xl mx-auto min-h-screen">
+      <main className=" pb-12 px-2 max-w-7xl mx-auto min-h-screen">
         {/* Main Content Area */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-32 overflow-hidden">
           
@@ -93,7 +93,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Word Rush */}
               <div 
-                className="bg-white p-6 rounded-[2rem] shadow-[0_8px_24px_rgba(0,0,0,0.04)] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] overflow-hidden animate-fade-in-up"
+                className="bg-white p-6 rounded-[2rem] shadow-[0_8px_24px_rgba(0,0,0,0.04)] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[280px] overflow-hidden animate-fade-in-up"
                 onClick={() => navigate('/game/word-rush')}
                 style={{ animationDelay: '300ms' }}
               >
@@ -114,7 +114,7 @@ export default function Dashboard() {
               
               {/* Pattern Recall */}
               <div 
-                className="bg-[#f0f3f7] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] overflow-hidden animate-fade-in-up"
+                className="bg-[#f0f3f7] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[280px] overflow-hidden animate-fade-in-up"
                 onClick={() => navigate('/game/pattern-recall')}
                 style={{ animationDelay: '400ms' }}
               >
