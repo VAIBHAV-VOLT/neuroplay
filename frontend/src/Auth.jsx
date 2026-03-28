@@ -75,12 +75,8 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-surface-container-low flex flex-col items-center justify-between relative overflow-y-auto font-body pt-6">
-      {/* Background Gradients */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary-container/20 blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-container/10 blur-[120px] rounded-full"></div>
-      </div>
+    <div className="min-h-screen w-full flex flex-col items-center justify-between relative overflow-y-auto font-body pt-6" style={{ backgroundImage: "url('/7751672.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {/* Background Gradients removed for new image background */}
 
       {/* Top Logo */}
       <div className="z-10 mt-6 cursor-pointer flex items-center gap-2 transition-transform hover:scale-105" onClick={() => navigate('/')}>
