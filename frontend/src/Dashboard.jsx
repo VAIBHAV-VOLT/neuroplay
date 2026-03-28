@@ -93,14 +93,19 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Word Rush */}
               <div 
-                className="bg-white p-6 rounded-[2rem] shadow-[0_8px_24px_rgba(0,0,0,0.04)] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] animate-fade-in-up"
+                className="bg-white p-6 rounded-[2rem] shadow-[0_8px_24px_rgba(0,0,0,0.04)] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] overflow-hidden animate-fade-in-up"
                 onClick={() => navigate('/game/word-rush')}
                 style={{ animationDelay: '300ms' }}
               >
-                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#e8f0fe] flex items-center justify-center text-[#1a56db] group-hover:scale-110 transition-transform">
+                {/* Central Graphic */}
+                <div className="absolute top-8 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center pointer-events-none group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500">
+                  <img src="/word rush img.webp" alt="Word Rush Graphic" className="max-w-full max-h-full object-contain" />
+                </div>
+                
+                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#e8f0fe] flex items-center justify-center text-[#1a56db] group-hover:scale-110 transition-transform z-10">
                   <span className="material-symbols-outlined text-[24px]">translate</span>
                 </div>
-                <div>
+                <div className="relative z-10">
                   <span className="text-[10px] font-extrabold text-[#1a56db] uppercase tracking-widest block mb-1 font-label">Linguistic</span>
                   <h3 className="text-[24px] font-bold font-headline mb-1 text-slate-800 tracking-tight leading-tight">Word Rush</h3>
                   <p className="text-[14px] text-slate-500 line-clamp-2 font-medium">Enhance vocabulary recall and processing speed.</p>
@@ -109,17 +114,16 @@ export default function Dashboard() {
               
               {/* Pattern Recall */}
               <div 
-                className="bg-[#f0f3f7] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] animate-fade-in-up"
+                className="bg-[#f0f3f7] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] overflow-hidden animate-fade-in-up"
                 onClick={() => navigate('/game/pattern-recall')}
                 style={{ animationDelay: '400ms' }}
               >
-                <div className="absolute top-6 left-6 right-6 h-24 bg-white/60 backdrop-blur-md rounded-[1.25rem] flex items-center justify-center gap-[4px] shadow-sm">
-                  <div className="w-[12px] h-8 bg-[#c4b5fd] rounded-full group-hover:h-12 transition-all duration-300"></div>
-                  <div className="w-[12px] h-14 bg-[#a78bfa] rounded-full group-hover:h-10 transition-all duration-300 delay-75"></div>
-                  <div className="w-[12px] h-16 bg-[#8b5cf6] rounded-full group-hover:h-14 transition-all duration-300 delay-150"></div>
-                  <div className="w-[12px] h-12 bg-[#c4b5fd] rounded-full group-hover:h-8 transition-all duration-300 delay-200"></div>
+                {/* Central Graphic */}
+                <div className="absolute top-8 left-1/2 -translate-x-1/2 w-32 h-40 flex items-center justify-center pointer-events-none group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500">
+                  <img src="/pattern recall.png" alt="Pattern Recall Graphic" className="max-w-full max-h-full object-contain" />
                 </div>
-                <div className="mt-auto">
+                
+                <div className="relative z-10 mt-auto">
                   <span className="text-[10px] font-extrabold text-[#8b5cf6] uppercase tracking-widest block mb-1 font-label">Memory</span>
                   <h3 className="text-[24px] font-bold font-headline mb-1 text-slate-800 tracking-tight leading-tight">Pattern Recall</h3>
                   <p className="text-[14px] text-slate-500 line-clamp-2 font-medium">Memorize grid sequences to test working memory and recall speed.</p>
@@ -128,14 +132,19 @@ export default function Dashboard() {
               
               {/* Balloon Burst */}
               <div 
-                className="bg-[#d2e0f2] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[240px] animate-fade-in-up"
+                className="bg-[#d2e0f2] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] overflow-hidden animate-fade-in-up"
                 onClick={() => navigate('/game/balloon-burst')}
                 style={{ animationDelay: '500ms' }}
               >
-                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#b1cdee] flex items-center justify-center text-[#1a56db] group-hover:scale-110 transition-transform">
+                {/* Central Graphic */}
+                <div className="absolute top-8 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center pointer-events-none group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500">
+                  <img src="/balloon burst.jpg" alt="Balloon Burst Graphic" className="max-w-full max-h-full object-contain mix-blend-multiply rounded-lg" />
+                </div>
+                
+                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#b1cdee] flex items-center justify-center text-[#1a56db] group-hover:scale-110 transition-transform z-10">
                   <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
                 </div>
-                <div>
+                <div className="relative z-10 mt-auto">
                   <span className="text-[10px] font-extrabold text-[#1a56db] uppercase tracking-widest block mb-1 font-label">Processing Power</span>
                   <h3 className="text-[24px] font-bold font-headline mb-1 text-slate-800 tracking-tight leading-tight">Balloon Burst</h3>
                   <p className="text-[14px] text-slate-600 line-clamp-2 font-medium">React quickly to pop energetic clusters of color.</p>
@@ -144,12 +153,17 @@ export default function Dashboard() {
               
               {/* Mood Canvas */}
               <div 
-                className="bg-[#def4e4] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[240px] overflow-hidden animate-fade-in-up"
+                className="bg-[#def4e4] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] overflow-hidden animate-fade-in-up"
                 onClick={() => navigate('/game/mood-canvas')}
                 style={{ animationDelay: '600ms' }}
               >
                 {/* Central Soft Glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#7fcb9a] rounded-full blur-[40px] opacity-40 mix-blend-multiply group-hover:opacity-70 transition-opacity duration-500"></div>
+                
+                {/* Central Graphic */}
+                <div className="absolute top-8 left-1/2 -translate-x-1/2 w-40 h-40 flex items-center justify-center pointer-events-none group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500 z-10">
+                  <img src="/mood canvas.png" alt="Mood Canvas Graphic" className="max-w-full max-h-full object-contain mix-blend-multiply rounded-lg" />
+                </div>
                 
                 <div className="absolute top-6 right-6 flex items-center justify-center text-[#065f46] group-hover:scale-110 transition-transform z-10 w-12 h-12">
                   <span className="material-symbols-outlined text-[28px]">palette</span>
