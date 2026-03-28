@@ -30,23 +30,24 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+    <div className="relative z-0 text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+      <div className="fixed inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: "url('/image.png')" }}></div>
       {/* TopNavBar */}
-      <nav className="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0_20_40px_rgba(0,88,185,0.08)]">
-        <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+      <nav className="fixed top-0 w-full z-50 bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border-b border-white/20 shadow-sm">
+        <div className="flex justify-between items-center px-8 md:px-16 py-[1.1rem]">
           <div 
-            className="text-2xl font-bold tracking-tighter text-blue-600 dark:text-blue-400 font-headline cursor-pointer hover:opacity-80 transition-opacity" 
+            className="text-2xl font-extrabold tracking-tighter text-[#0058b9] dark:text-blue-400 font-headline cursor-pointer hover:opacity-80 transition-opacity" 
             onClick={() => navigate('/dashboard')}
           >
             NeuroPlay
           </div>
-          <div className="hidden md:flex items-center space-x-8 font-plus-jakarta text-sm font-medium tracking-tight">
-            <button className="text-blue-600 dark:text-blue-400 font-bold border-b-2 border-blue-600 dark:border-blue-400 pb-1" onClick={() => navigate('/dashboard')}>Dashboard</button>
-            <button className="text-slate-500 dark:text-slate-400 hover:text-blue-500 transition-colors">Games</button>
-            <button className="text-slate-500 dark:text-slate-400 hover:text-blue-500 transition-colors">Insights</button>
-            <button className="text-slate-500 dark:text-slate-400 hover:text-blue-500 transition-colors">Community</button>
+          <div className="hidden md:flex items-center gap-8 font-body text-[0.95rem] font-medium">
+            <button className="text-[#0058b9] dark:text-blue-400 font-semibold" onClick={() => navigate('/dashboard')}>Dashboard</button>
+            <button className="text-slate-600 dark:text-slate-400 hover:text-[#0058b9] transition-colors">Games</button>
+            <button className="text-slate-600 dark:text-slate-400 hover:text-[#0058b9] transition-colors">Insights</button>
+            <button className="text-slate-600 dark:text-slate-400 hover:text-[#0058b9] transition-colors">Community</button>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button className="p-2 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-full transition-all active:scale-95 duration-200" title="Notifications">
               <span className="material-symbols-outlined text-on-surface-variant">notifications</span>
             </button>
@@ -66,7 +67,7 @@ export default function Dashboard() {
           
           {/* Left: Hero Card */}
           <section 
-            className="lg:col-span-4 flex flex-col gap-6 animate-fade-in-up" 
+            className="lg:col-span-4 py-16 flex flex-col gap-4 animate-fade-in-up" 
             style={{ animationDelay: '100ms' }}
           >
             <div className="bg-gradient-to-br from-white to-surface-container-low p-12 rounded-[3.5rem] relative overflow-hidden group min-h-[420px] flex flex-col justify-center lp-card-hover border border-white/40 shadow-[0_24px_48px_rgba(0,88,185,0.05)]">
@@ -90,79 +91,75 @@ export default function Dashboard() {
 
           {/* Right: Game Grid (Daily Exercises) */}
           <section className="lg:col-span-8">
-            <div 
-              className="flex items-center justify-between mb-8 px-2 animate-fade-in-up" 
-              style={{ animationDelay: '200ms' }}
-            >
-              <h2 className="text-2xl font-headline font-bold text-on-surface">Daily Exercises</h2>
-            </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Word Rush */}
               <div 
-                className="glass-card p-6 rounded-xl group hover:bg-white transition-all cursor-pointer relative overflow-hidden h-64 flex flex-col justify-end animate-fade-in-up lp-card-hover"
+                className="bg-white p-6 rounded-[2rem] shadow-[0_8px_24px_rgba(0,0,0,0.04)] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] animate-fade-in-up"
                 onClick={() => navigate('/game/word-rush')}
                 style={{ animationDelay: '300ms' }}
               >
-                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                  <span className="material-symbols-outlined">translate</span>
+                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#e8f0fe] flex items-center justify-center text-[#1a56db] group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-[24px]">translate</span>
                 </div>
-                <div className="relative z-10">
-                  <span className="text-[10px] font-bold text-primary uppercase tracking-widest block mb-1 font-label">Linguistic</span>
-                  <h3 className="text-2xl font-bold font-headline mb-1">Word Rush</h3>
-                  <p className="text-sm text-on-surface-variant line-clamp-2">Enhance vocabulary recall and processing speed.</p>
+                <div>
+                  <span className="text-[10px] font-extrabold text-[#1a56db] uppercase tracking-widest block mb-1 font-label">Linguistic</span>
+                  <h3 className="text-[24px] font-bold font-headline mb-1 text-slate-800 tracking-tight leading-tight">Word Rush</h3>
+                  <p className="text-[14px] text-slate-500 line-clamp-2 font-medium">Enhance vocabulary recall and processing speed.</p>
                 </div>
               </div>
               
               {/* Pattern Recall */}
               <div 
-                className="bg-surface-container-low p-6 rounded-xl group hover:bg-secondary-container/20 transition-all cursor-pointer h-64 flex flex-col justify-between animate-fade-in-up lp-card-hover"
+                className="bg-[#f0f3f7] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[310px] animate-fade-in-up"
                 onClick={() => navigate('/game/pattern-recall')}
                 style={{ animationDelay: '400ms' }}
               >
-                <div className="w-full h-24 rounded-lg bg-surface-container-lowest/50 mb-4 flex items-center justify-center gap-1 overflow-hidden">
-                  <div className="w-3 h-8 bg-secondary rounded-full opacity-20 group-hover:h-12 transition-all"></div>
-                  <div className="w-3 h-14 bg-secondary rounded-full opacity-40 group-hover:h-10 transition-all"></div>
-                  <div className="w-3 h-10 bg-secondary rounded-full opacity-60 group-hover:h-16 transition-all"></div>
-                  <div className="w-3 h-16 bg-secondary rounded-full opacity-40 group-hover:h-8 transition-all"></div>
+                <div className="absolute top-6 left-6 right-6 h-24 bg-white/60 backdrop-blur-md rounded-[1.25rem] flex items-center justify-center gap-[4px] shadow-sm">
+                  <div className="w-[12px] h-8 bg-[#c4b5fd] rounded-full group-hover:h-12 transition-all duration-300"></div>
+                  <div className="w-[12px] h-14 bg-[#a78bfa] rounded-full group-hover:h-10 transition-all duration-300 delay-75"></div>
+                  <div className="w-[12px] h-16 bg-[#8b5cf6] rounded-full group-hover:h-14 transition-all duration-300 delay-150"></div>
+                  <div className="w-[12px] h-12 bg-[#c4b5fd] rounded-full group-hover:h-8 transition-all duration-300 delay-200"></div>
                 </div>
-                <div>
-                  <span className="text-[10px] font-bold text-secondary uppercase tracking-widest block mb-1 font-label">Memory</span>
-                  <h3 className="text-2xl font-bold font-headline mb-1 text-on-surface">Pattern Recall</h3>
-                  <p className="text-sm text-on-surface-variant line-clamp-2">Memorize grid sequences to test working memory and recall speed.</p>
+                <div className="mt-auto">
+                  <span className="text-[10px] font-extrabold text-[#8b5cf6] uppercase tracking-widest block mb-1 font-label">Memory</span>
+                  <h3 className="text-[24px] font-bold font-headline mb-1 text-slate-800 tracking-tight leading-tight">Pattern Recall</h3>
+                  <p className="text-[14px] text-slate-500 line-clamp-2 font-medium">Memorize grid sequences to test working memory and recall speed.</p>
                 </div>
               </div>
               
               {/* Balloon Burst */}
               <div 
-                className="bg-primary-container/10 p-6 rounded-xl group hover:bg-primary-container/20 transition-all cursor-pointer h-64 flex flex-col justify-between border border-primary-container/20 animate-fade-in-up lp-card-hover"
+                className="bg-[#d2e0f2] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[240px] animate-fade-in-up"
                 onClick={() => navigate('/game/balloon-burst')}
                 style={{ animationDelay: '500ms' }}
               >
-                <div className="w-14 h-14 rounded-full bg-primary-container/30 flex items-center justify-center text-primary self-end group-hover:scale-110 group-hover:-rotate-12 transition-transform">
-                  <span className="material-symbols-outlined text-3xl animate-bounce">bolt</span>
+                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#b1cdee] flex items-center justify-center text-[#1a56db] group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold text-primary uppercase tracking-widest block mb-1 font-label">Processing Power</span>
-                  <h3 className="text-2xl font-bold font-headline mb-1 text-on-surface">Balloon Burst</h3>
-                  <p className="text-sm text-on-surface-variant line-clamp-2">React quickly to pop energetic clusters of color.</p>
+                  <span className="text-[10px] font-extrabold text-[#1a56db] uppercase tracking-widest block mb-1 font-label">Processing Power</span>
+                  <h3 className="text-[24px] font-bold font-headline mb-1 text-slate-800 tracking-tight leading-tight">Balloon Burst</h3>
+                  <p className="text-[14px] text-slate-600 line-clamp-2 font-medium">React quickly to pop energetic clusters of color.</p>
                 </div>
               </div>
               
               {/* Mood Canvas */}
               <div 
-                className="bg-gradient-to-br from-tertiary-container/20 to-surface-container-lowest p-6 rounded-xl group hover:shadow-lg transition-all cursor-pointer relative flex flex-col justify-between overflow-hidden h-64 animate-fade-in-up lp-card-hover"
+                className="bg-[#def4e4] p-6 rounded-[2rem] group hover:shadow-xl transition-all cursor-pointer relative flex flex-col justify-end h-[240px] overflow-hidden animate-fade-in-up"
                 onClick={() => navigate('/game/mood-canvas')}
                 style={{ animationDelay: '600ms' }}
               >
-                <div className="absolute -right-4 -top-4 w-24 h-24 bg-tertiary-container rounded-full blur-3xl opacity-20"></div>
-                <div className="self-end group-hover:scale-110 group-hover:rotate-12 transition-transform">
-                  <span className="material-symbols-outlined text-4xl text-tertiary">palette</span>
+                {/* Central Soft Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#7fcb9a] rounded-full blur-[40px] opacity-40 mix-blend-multiply group-hover:opacity-70 transition-opacity duration-500"></div>
+                
+                <div className="absolute top-6 right-6 flex items-center justify-center text-[#065f46] group-hover:scale-110 transition-transform z-10 w-12 h-12">
+                  <span className="material-symbols-outlined text-[28px]">palette</span>
                 </div>
-                <div className="relative z-10">
-                  <span className="text-[10px] font-bold text-tertiary uppercase tracking-widest block mb-1 font-label">Emotional Intelligence</span>
-                  <h3 className="text-2xl font-bold font-headline mb-1 text-on-surface">Mood Canvas</h3>
-                  <p className="text-sm text-on-surface-variant line-clamp-2">Visualize your emotional landscape through abstract brush strokes.</p>
+                <div className="relative z-10 mt-auto">
+                  <span className="text-[10px] font-extrabold text-[#065f46] uppercase tracking-widest block mb-1 font-label">Emotional Intelligence</span>
+                  <h3 className="text-[24px] font-bold font-headline mb-1 text-slate-800 tracking-tight leading-tight">Mood Canvas</h3>
+                  <p className="text-[14px] text-slate-600 line-clamp-2 font-medium">Visualize your emotional landscape through abstract brush strokes.</p>
                 </div>
               </div>
             </div>
@@ -255,7 +252,7 @@ export default function Dashboard() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full rounded-t-[3rem] mt-auto bg-slate-50 dark:bg-slate-950 animate-fade-in-up" style={{ animationDelay: '800ms' }}>
+      <footer className="w-full rounded-t-[3rem] mt-auto bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border-t border-white/20 shadow-sm animate-fade-in-up" style={{ animationDelay: '800ms' }}>
         <div className="flex flex-col md:flex-row justify-between items-center px-12 py-8 gap-4 max-w-7xl mx-auto">
           <div className="font-manrope text-xs text-slate-500 dark:text-slate-400">
             © 2026 NeuroPlay. A Fluid Sanctuary for your mind.
