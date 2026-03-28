@@ -29,8 +29,9 @@ export default function PatternRecall({ onComplete }) {
     } else if (timeLeft === 0) {
       onComplete({
         focus_score: score,
-        reaction_time: round > 1 ? Math.round(totalReactionTime / round) : 0,
-        error_rate: round > 1 ? Math.round((mistakes / round) * 100) : 0
+        pattern_accuracy: Math.max(0, Math.round(((round - mistakes)/Math.max(round, 1)) * 100)),
+        pattern_time: round > 1 ? Math.round(totalReactionTime / round) : 0,
+        pattern_mistakes: mistakes
       });
     }
   }, [timeLeft, score, totalReactionTime, round, mistakes]);

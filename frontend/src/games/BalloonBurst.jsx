@@ -11,6 +11,9 @@ export default function BalloonBurst({ onComplete }) {
   const [timeLeft, setTimeLeft] = useState(30);
   const [score, setScore] = useState(0);
   const [missed, setMissed] = useState(0);
+  const [wrongTaps, setWrongTaps] = useState(0);
+  const [totalReactionTime, setTotalReactionTime] = useState(0);
+  const [tapCount, setTapCount] = useState(0);
   
   const idCounter = useRef(0);
   const containerRef = useRef(null);
@@ -25,26 +28,56 @@ export default function BalloonBurst({ onComplete }) {
           id: idCounter.current++,
           ...randomColor,
           left: Math.floor(Math.random() * 80) + 10,
+          spawnTime: Date.now()
         };
         setBalloons(prev => [...prev, newBalloon]);
       }, 700); // spawn every 700ms
       
+      const cleaner = setInterval(() => {
+        setBalloons(prev => {
+          const now = Date.now();
+          let missedCount = 0;
+          const kept = prev.filter(b => {
+             if (now - b.spawnTime > 3500) {
+                missedCount++;
+                return false;
+             }
+             return true;
+          });
+          if (missedCount > 0) setMissed(m => m + missedCount);
+          return kept;
+        });
+      }, 500);
+      
       return () => {
         clearInterval(timer);
         clearInterval(spawner);
+        clearInterval(cleaner);
       };
     } else if (timeLeft === 0) {
+      const avgReaction = tapCount > 0 ? totalReactionTime / tapCount : 0;
+      const consistency = (tapCount / Math.max(1, tapCount + wrongTaps + missed)) * 100;
+      
       onComplete({
         focus_score: score,
-        reaction_time: 0,
-        error_rate: missed
+        reaction_time: Math.round(avgReaction),
+        wrong_time: wrongTaps * 0.5, // Calculate literal equivalent wasted time (penalty)
+        missed_targets: missed,
+        consistency_score: Math.round(Math.max(0, consistency))
       });
     }
-  }, [timeLeft, score, missed]);
+  }, [timeLeft, score, missed, wrongTaps, tapCount, totalReactionTime]);
 
-  const handleTap = (id) => {
+  const handleContainerTap = () => {
+     setWrongTaps(prev => prev + 1);
+  };
+
+  const handleTap = (id, e) => {
+    e.stopPropagation();
     setBalloons(prev => prev.map(b => {
       if (b.id === id) {
+        setTotalReactionTime(prevRT => prevRT + (Date.now() - b.spawnTime));
+        setTapCount(prevTC => prevTC + 1);
         if (b.health - 1 <= 0) {
           setScore(s => s + (b.type === 'triple' ? 30 : b.type === 'double' ? 20 : 10));
           return null; 
@@ -56,7 +89,11 @@ export default function BalloonBurst({ onComplete }) {
   };
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden rounded-[2rem] bg-surface-container-low border border-surface-container shadow-inner animate-fade-in-up" ref={containerRef}>
+    <div 
+      className="relative w-full h-[500px] overflow-hidden rounded-[2rem] bg-surface-container-low border border-surface-container shadow-inner animate-fade-in-up cursor-default" 
+      ref={containerRef}
+      onMouseDown={handleContainerTap}
+    >
       <div className="absolute top-4 left-4 z-10 bg-tertiary-container/80 backdrop-blur-sm px-6 py-2 rounded-full font-bold text-tertiary shadow-sm">
         00:{timeLeft.toString().padStart(2, '0')}
       </div>
@@ -82,7 +119,7 @@ export default function BalloonBurst({ onComplete }) {
       {balloons.map(b => (
         <button
           key={b.id}
-          onClick={() => handleTap(b.id)}
+          onMouseDown={(e) => handleTap(b.id, e)}
           className={`absolute bottom-0 w-20 h-24 rounded-t-[50%] rounded-b-[40%] ${b.bg} transform -translate-x-1/2 shadow-lg transition-transform active:scale-90 cursor-crosshair`}
           style={{ 
             left: `${b.left}%`,

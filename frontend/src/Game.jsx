@@ -43,7 +43,18 @@ export default function Game() {
             typing_speed: resultData.typing_speed || 0,
             error_rate: resultData.error_rate || 0,
             reaction_time: resultData.reaction_time || 0,
-            focus_score: resultData.focus_score || 0
+            focus_score: resultData.focus_score || 0,
+            backspace_count: resultData.backspace_count || 0,
+            pause_time: resultData.pause_time || 0,
+            pattern_accuracy: resultData.pattern_accuracy || 0,
+            pattern_time: resultData.pattern_time || 0,
+            pattern_mistakes: resultData.pattern_mistakes || 0,
+            wrong_time: resultData.wrong_time || 0,
+            missed_targets: resultData.missed_targets || 0,
+            consistency_score: resultData.consistency_score || 0,
+            mood_type: resultData.mood_type || 'Neutral',
+            mood_intensity: resultData.mood_intensity || 0,
+            mood_response_time: resultData.mood_response_time || 0
           })
         });
       }
@@ -104,43 +115,81 @@ export default function Game() {
               <h2 className="text-5xl font-headline font-extrabold mb-4 tracking-tight text-on-surface">Session Complete</h2>
               <p className="text-on-surface-variant text-lg mb-10">Data successfully recorded to your profile.</p>
               
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-2xl mb-12">
-                <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm col-span-2 md:col-span-1">
-                  <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Total Score</span>
-                  <span className="text-4xl font-black text-primary font-headline">{sessionData.focus_score || 0}</span>
-                </div>
-                
-                {sessionData.reaction_time !== undefined && (
-                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
-                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Reaction</span>
-                    <span className="text-4xl font-black text-tertiary font-headline">{sessionData.reaction_time}ms</span>
-                  </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mb-12">
+                {id === 'word-rush' && (
+                  <>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Typing Speed</span>
+                      <span className="text-4xl font-black text-secondary font-headline">{sessionData.typing_speed} <span className="text-lg">wpm</span></span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Error Rate</span>
+                      <span className="text-4xl font-black text-error font-headline">{sessionData.error_rate}%</span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Backspaces</span>
+                      <span className="text-4xl font-black text-error-container font-headline text-on-error-container">{sessionData.backspace_count}</span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Pause Time</span>
+                      <span className="text-4xl font-black text-tertiary font-headline">{sessionData.pause_time}s</span>
+                    </div>
+                  </>
                 )}
 
-                {sessionData.typing_speed !== undefined ? (
+                {id === 'pattern-recall' && (
                   <>
-                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
-                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">WPM</span>
-                    <span className="text-4xl font-black text-secondary font-headline">{sessionData.typing_speed}</span>
-                  </div>
-                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
-                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Errors</span>
-                    <span className="text-4xl font-black text-error font-headline">{sessionData.error_rate || 0}%</span>
-                  </div>
-                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
-                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Backspaces</span>
-                    <span className="text-4xl font-black text-error-container font-headline text-on-error-container">{sessionData.backspace_count || 0}</span>
-                  </div>
-                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
-                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Avg Pause</span>
-                    <span className="text-4xl font-black text-tertiary font-headline">{sessionData.pause_time || 0}s</span>
-                  </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Accuracy</span>
+                      <span className="text-4xl font-black text-primary font-headline">{sessionData.pattern_accuracy}%</span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Reaction Time</span>
+                      <span className="text-4xl font-black text-tertiary font-headline">{sessionData.pattern_time} <span className="text-lg">ms</span></span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm col-span-2 md:col-span-2">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Pattern Mistakes</span>
+                      <span className="text-4xl font-black text-error font-headline">{sessionData.pattern_mistakes}</span>
+                    </div>
                   </>
-                ) : (
-                  <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
-                    <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Errors</span>
-                    <span className="text-4xl font-black text-error font-headline">{sessionData.error_rate || 0}</span>
-                  </div>
+                )}
+
+                {id === 'balloon-burst' && (
+                  <>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Reaction T.</span>
+                      <span className="text-4xl font-black text-tertiary font-headline">{sessionData.reaction_time} <span className="text-lg">ms</span></span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Penalty Time</span>
+                      <span className="text-4xl font-black text-error font-headline">{sessionData.wrong_time} <span className="text-lg">s</span></span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Missed</span>
+                      <span className="text-4xl font-black text-error-container font-headline text-on-error-container">{sessionData.missed_targets}</span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Consistency</span>
+                      <span className="text-4xl font-black text-secondary font-headline">{sessionData.consistency_score}%</span>
+                    </div>
+                  </>
+                )}
+
+                {id === 'mood-canvas' && (
+                  <>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm col-span-2">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Mood Type</span>
+                      <span className="text-4xl font-black text-primary font-headline">{sessionData.mood_type}</span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Intensity</span>
+                      <span className="text-4xl font-black text-secondary font-headline">{sessionData.mood_intensity}/10</span>
+                    </div>
+                    <div className="bg-surface-container-low border border-surface-container p-6 rounded-3xl shadow-sm">
+                      <span className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 font-label">Response</span>
+                      <span className="text-4xl font-black text-tertiary font-headline">{sessionData.mood_response_time} <span className="text-lg">s</span></span>
+                    </div>
+                  </>
                 )}
               </div>
 

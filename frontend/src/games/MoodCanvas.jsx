@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const STEPS = [
   {
@@ -40,10 +40,19 @@ export default function MoodCanvas({ onComplete }) {
       return () => clearInterval(timer);
     } else if (timeLeft === 0) {
       const avgTime = timeTaken / Math.max(step, 1);
+      
+      // Compute specialized mood tracking metrics
+      const moodType = selections[0] || 'Neutral'; // e.g. 'sunny', 'cloudy', 'stormy'
+      const moodIntensity = selections.length 
+        ? (selections.includes('stormy') || selections.includes('electronic') ? 8 : 4) 
+        : 0;
+
       onComplete({
         focus_score: avgTime < 2500 ? 95 : 70, 
         reaction_time: Math.round(avgTime),
-        error_rate: 0 
+        mood_type: moodType.charAt(0).toUpperCase() + moodType.slice(1),
+        mood_intensity: moodIntensity,
+        mood_response_time: Number((avgTime / 1000).toFixed(2))
       });
     }
   }, [timeLeft, step, timeTaken]);
@@ -59,12 +68,19 @@ export default function MoodCanvas({ onComplete }) {
       setStep(s => s + 1);
       setStepStartTime(Date.now());
     } else {
-      // Analyze mock mood score based on speed of answering and choices
-      const avgTime = (timeTaken + elapsed) / 3;
+      // User completed all 3 steps manually — calc mood metrics from their answers
+      const finalSelections = [...selections, optionId];
+      const avgTime = (timeTaken + elapsed) / STEPS.length;
+      const moodType = finalSelections[0] || 'Neutral';
+      const moodIntensity = finalSelections.includes('stormy') || finalSelections.includes('electronic') ? 8
+        : finalSelections.includes('cloudy') || finalSelections.includes('jazz') ? 5 : 3;
+
       onComplete({
-        focus_score: avgTime < 2500 ? 95 : 70, // Quick decisiveness implies focus
+        focus_score: avgTime < 2500 ? 95 : 70,
         reaction_time: Math.round(avgTime),
-        error_rate: 0 // Not applicable 
+        mood_type: moodType.charAt(0).toUpperCase() + moodType.slice(1),
+        mood_intensity: moodIntensity,
+        mood_response_time: Number((avgTime / 1000).toFixed(2))
       });
     }
   };
