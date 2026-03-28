@@ -33,7 +33,7 @@ export default function Dashboard() {
     <div className="relative z-0 text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
       <div className="fixed inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: "url('/image.png')" }}></div>
       {/* TopNavBar */}
-      <nav className="fixed top-0 w-full z-50 bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border-b border-white/20 shadow-sm">
+      <nav className=" top-0 w-full z-50 ">
         <div className="flex justify-between items-center px-8 md:px-16 py-[1.1rem]">
           <div 
             className="text-2xl font-extrabold tracking-tighter text-[#0058b9] dark:text-blue-400 font-headline cursor-pointer hover:opacity-80 transition-opacity" 
@@ -42,8 +42,7 @@ export default function Dashboard() {
             NeuroPlay
           </div>
           <div className="hidden md:flex items-center gap-8 font-body text-[0.95rem] font-medium">
-            <button className="text-[#0058b9] dark:text-blue-400 font-semibold" onClick={() => navigate('/dashboard')}>Dashboard</button>
-            <button className="text-slate-600 dark:text-slate-400 hover:text-[#0058b9] transition-colors">Games</button>
+           
             <button className="text-slate-600 dark:text-slate-400 hover:text-[#0058b9] transition-colors">Insights</button>
             <button className="text-slate-600 dark:text-slate-400 hover:text-[#0058b9] transition-colors">Community</button>
           </div>
@@ -61,9 +60,9 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      <main className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen">
+      <main className="pt-4 pb-12 px-2 max-w-7xl mx-auto min-h-screen">
         {/* Main Content Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-10 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-32 overflow-hidden">
           
           {/* Left: Hero Card */}
           <section 
