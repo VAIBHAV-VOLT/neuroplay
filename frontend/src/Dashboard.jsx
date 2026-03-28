@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './LandingPage.css';
 
 /* ── Scroll-reveal hook for Dashboard ── */
 function useScrollReveal(selector = '[data-reveal]', rootMargin = '0px 0px -60px 0px') {
@@ -33,29 +34,27 @@ export default function Dashboard() {
     <div className="relative z-0 text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
       <div className="fixed inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: "url('/image.png')" }}></div>
       {/* TopNavBar */}
-      <nav className=" top-0 w-full z-50 ">
-        <div className="flex justify-between items-center px-8 md:px-16 py-[1.1rem]">
-          <div 
-            className="text-2xl font-extrabold tracking-tighter text-[#0058b9] dark:text-blue-400 font-headline cursor-pointer hover:opacity-80 transition-opacity" 
-            onClick={() => navigate('/dashboard')}
-          >
-            NeuroPlay
-          </div>
-          <div className="hidden md:flex items-center gap-8 font-body text-[0.95rem] font-medium">
-           
-            <button className="text-slate-600 dark:text-slate-400 hover:text-[#0058b9] transition-colors">Insights</button>
-            <button className="text-slate-600 dark:text-slate-400 hover:text-[#0058b9] transition-colors">Community</button>
-          </div>
-          <div className="flex items-center gap-3">
-            <button className="p-2 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-full transition-all active:scale-95 duration-200" title="Notifications">
-              <span className="material-symbols-outlined text-on-surface-variant">notifications</span>
-            </button>
-            <button className="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-all active:scale-95 duration-200" title="Logout" onClick={handleLogout}>
-              <span className="material-symbols-outlined text-error">logout</span>
-            </button>
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container hover:scale-105 transition-transform cursor-pointer">
-              <img alt="User profile avatar" className="w-full h-full object-cover" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&gender=female" />
-            </div>
+      <nav className="lp-nav lp-nav-animate" style={{ position: 'static' }}>
+        <div 
+          className="lp-nav-brand cursor-pointer hover:opacity-80 transition-opacity" 
+          onClick={() => navigate('/dashboard')}
+        >
+          NeuroPlay
+        </div>
+        <div className="lp-nav-links hidden md:flex">
+         
+          <a href="#" onClick={(e) => e.preventDefault()}>Insights</a>
+          <a href="#" onClick={(e) => e.preventDefault()}>Community</a>
+        </div>
+        <div className="lp-nav-actions">
+          <button className="p-2 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-full transition-all active:scale-95 duration-200" title="Notifications">
+            <span className="material-symbols-outlined text-on-surface-variant">notifications</span>
+          </button>
+          <button className="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-all active:scale-95 duration-200" title="Logout" onClick={handleLogout}>
+            <span className="material-symbols-outlined text-error">logout</span>
+          </button>
+          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container hover:scale-105 transition-transform cursor-pointer">
+            <img alt="User profile avatar" className="w-full h-full object-cover" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&gender=female" />
           </div>
         </div>
       </nav>
