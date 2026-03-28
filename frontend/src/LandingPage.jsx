@@ -18,8 +18,8 @@ export default function LandingPage() {
           <a href="#">Community</a>
         </div>
         <div className="lp-nav-actions">
-          <button className="lp-btn-ghost" onClick={() => navigate('/auth')}>Log In</button>
-          <button className="lp-btn-primary" onClick={() => navigate('/auth')}>Get Started</button>
+          <button className="lp-btn-ghost" onClick={() => navigate('/auth', { state: { defaultMode: 'login' } })}>Log In</button>
+          <button className="lp-btn-primary" onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}>Get Started</button>
         </div>
       </nav>
 
@@ -36,10 +36,10 @@ export default function LandingPage() {
             games to measure and improve your cognitive resilience daily.
           </p>
           <div className="lp-hero-actions">
-            <button className="lp-btn-primary large" onClick={() => navigate('/auth')}>
+            <button className="lp-btn-primary large" onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}>
               Begin Your Journey
             </button>
-            <button className="lp-btn-ghost large" onClick={() => navigate('/auth')}>
+            <button className="lp-btn-ghost large" onClick={() => navigate('/auth', { state: { defaultMode: 'login' } })}>
               See How It Works
             </button>
           </div>
@@ -125,7 +125,7 @@ export default function LandingPage() {
           <div className="lp-badge">Experience the Flow</div>
           <h2>Every NeuroPlay session is designed to be a "moment of flow"</h2>
           <p>A perfect balance between challenge and relaxation that resets your nervous system.</p>
-          <button className="lp-btn-primary large" onClick={() => navigate('/auth')}>
+          <button className="lp-btn-primary large" onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}>
             Start for Free →
           </button>
         </div>
