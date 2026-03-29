@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FlowHoverButton } from './components/ui/flow-hover-button';
 import './LandingPage.css';
 
 /* ── Scroll-reveal hook ── */
@@ -40,18 +41,19 @@ export default function LandingPage() {
           <a href="#">Insights</a>
           <a href="#">Community</a>
         </div>
-        <div className="lp-nav-actions">
-          <button 
-            className="group relative inline-flex h-[42px] items-center justify-center overflow-hidden rounded-full bg-white px-8 font-bold text-[#0058b9] shadow-[0_4px_14px_0_rgb(0,88,185,0.1)] transition-all hover:shadow-[0_6px_20px_rgba(0,88,185,0.15)] active:scale-95"
+        <div className="lp-nav-actions flex gap-4">
+          <FlowHoverButton
             onClick={() => navigate('/auth', { state: { defaultMode: 'login' } })}
+            className="border-[#0058b9]/50 text-[#0058b9] before:bg-[#0058b9] hover:border-[#0058b9]"
           >
-            <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
-              <div className="relative h-full w-10 bg-[#0058b9]/10" />
-            </div>
-            <span className="relative z-10 tracking-tight">Log In</span>
-          </button>
-          
-          <button className="lp-btn-primary" onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}>Get Started</button>
+            Log In
+          </FlowHoverButton>
+          <FlowHoverButton
+            onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}
+            className="border-[#0058b9]/50 text-[#0058b9] before:bg-[#0058b9] hover:border-[#0058b9]"
+          >
+            Get Started
+          </FlowHoverButton>
         </div>
       </nav>
 
@@ -67,28 +69,19 @@ export default function LandingPage() {
             Transform mental wellness into a journey of discovery. NeuroPlay uses clinically-backed
             games to measure and improve your cognitive resilience daily.
           </p>
-          <div className="lp-hero-actions lp-hero-anim" style={{ animationDelay: '0.55s' }}>
-            {/* Begin Your Journey Button */}
-            <button 
-              className="group relative inline-flex h-12 md:h-14 items-center justify-center overflow-hidden rounded-full bg-[#0058b9] px-8 md:px-10 font-bold text-white shadow-[0_8px_24px_0_rgb(0,88,185,0.2)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,88,185,0.3)] active:scale-95 text-[1.1rem]"
+          <div className="lp-hero-actions lp-hero-anim flex gap-4" style={{ animationDelay: '0.55s' }}>
+            <FlowHoverButton
               onClick={() => navigate('/auth', { state: { defaultMode: 'signup' } })}
+              className="border-[#34D399]/50 text-[#34D399] before:bg-[#34D399] hover:border-[#34D399] px-8 py-3 text-base"
             >
-              <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
-                <div className="relative h-full w-12 bg-white/20" />
-              </div>
-              <span className="relative z-10 tracking-tight">Begin Your Journey</span>
-            </button>
-
-            {/* See How It Works Button */}
-            <button 
-              className="group relative inline-flex h-12 md:h-14 items-center justify-center overflow-hidden rounded-full border-[1.5px] border-[#0058b9]/20 bg-transparent px-8 md:px-10 font-bold text-[#0058b9] transition-all hover:-translate-y-1 hover:bg-[#0058b9]/5 hover:border-[#0058b9]/40 active:scale-95 text-[1.1rem]"
+              Begin Your Journey
+            </FlowHoverButton>
+            <FlowHoverButton
               onClick={() => navigate('/auth', { state: { defaultMode: 'login' } })}
+              className="border-[#34D399]/50 text-[#34D399] before:bg-[#34D399] hover:border-[#34D399] px-8 py-3 text-base"
             >
-              <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
-                <div className="relative h-full w-12 bg-[#0058b9]/10" />
-              </div>
-              <span className="relative z-10 tracking-tight">See How It Works</span>
-            </button>
+              See How It Works
+            </FlowHoverButton>
           </div>
           <div className="lp-hero-stats lp-hero-anim" style={{ animationDelay: '0.7s' }}>
             <div className="lp-stat"><span className="lp-stat-num">2,000+</span><span className="lp-stat-label">Active Users</span></div>

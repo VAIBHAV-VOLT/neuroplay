@@ -75,7 +75,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-between relative overflow-y-auto font-body pt-6" style={{ backgroundImage: "url('/7751672.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="min-h-screen w-full flex flex-col items-center justify-between relative overflow-y-auto font-body " style={{ backgroundImage: "url('/7751672.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* Background Gradients removed for new image background */}
 
       {/* Top Logo */}
@@ -147,28 +147,18 @@ export default function Auth() {
           </p>
         </div>
 
-        {/* Social Proof Below Card */}
-        {!isLogin && (
-          <div className="mt-8 flex items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <div className="flex -space-x-3">
-              <img src="https://i.pravatar.cc/100?img=1" alt="user" className="w-10 h-10 rounded-full border-[3px] border-surface-container-low object-cover shadow-sm"/>
-              <img src="https://i.pravatar.cc/100?img=12" alt="user" className="w-10 h-10 rounded-full border-[3px] border-surface-container-low object-cover shadow-sm"/>
-              <img src="https://i.pravatar.cc/100?img=5" alt="user" className="w-10 h-10 rounded-full border-[3px] border-surface-container-low object-cover shadow-sm"/>
-            </div>
-            <p className="text-[0.85rem] text-on-surface-variant font-medium leading-tight max-w-[160px]">Join 2,000+ others finding their sanctuary.</p>
-          </div>
-        )}
+        
       </div>
 
       {/* Footer */}
-      <footer className="w-full flex flex-col md:flex-row justify-between items-center px-8 md:px-12 py-8 z-10 gap-4">
+      {/* <footer className="w-full flex flex-col md:flex-row justify-between items-center px-8 md:px-12 py-8 z-10 gap-4">
          <p className="text-[0.8rem] text-on-surface-variant/80 font-medium">© 2024 Fluid Sanctuary. Your companion in growth.</p>
          <div className="flex gap-6 text-[0.8rem] text-on-surface-variant/80 font-medium">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-primary transition-colors">Contact Support</a>
          </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }
